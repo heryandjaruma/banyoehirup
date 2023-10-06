@@ -1,29 +1,51 @@
 "use client";
-import Image from "next/image";
 import React, { useState } from "react";
+import { Fira_Code } from "next/font/google";
+import FigmaScreen from "./FigmaScreen";
+
+const fira_code = Fira_Code({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 export default function Landing() {
   const [isLandingVisible, setLandingVisible] = useState(true);
+  const audioRef = React.useRef<HTMLAudioElement>(null);
 
-  // Function to hide Landing when it's clicked
-  const hideLanding = () => {
+  const handleLandingClick = () => {
+    // Play the audio
+    if (audioRef.current) {
+      audioRef.current.play();
+      audioRef.current.volume = 0.1;
+    }
+
+    // Hide the landing
     setLandingVisible(false);
   };
 
-  if (!isLandingVisible) {
-    return null;
-  }
-
   return (
-    <div className="" onClick={hideLanding}>
-      <Image
-        src="/image/landing.svg"
-        width={1920}
-        height={1080}
-        className="pointer-events-none select-none w-[100w]"
-        priority
-        alt="landing-image"
-      />
-    </div>
+    <>
+      <audio ref={audioRef} src="/music/underwater_ambience_cut.mp3" />
+
+      {isLandingVisible && (
+        <div
+          className={`w-screen h-screen grid place-items-center ${fira_code.className}`}
+          onClick={handleLandingClick}
+        >
+          <div className="">
+            <p>Nasa Space Apps 2023 Challenge</p>
+            <p>by BJIR</p>
+            <br />
+            <button className="underline">Start</button>
+          </div>
+        </div>
+      )}
+
+      {!isLandingVisible && (
+        <div>
+          <FigmaScreen />
+        </div>
+      )}
+    </>
   );
 }
