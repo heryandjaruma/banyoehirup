@@ -50,6 +50,7 @@ export default function Landing() {
       {!isLandingVisible && (
         <div className="absolute top-2 right-2 opacity-20 hover:opacity-100 transition-opacity duration-300 flex items-center">
           <button onClick={toggleMute}>{isMuted ? "🔇" : "🔊"}</button>
+          {/* Hide on small screens and display on larger screens */}
           <input
             type="range"
             min="0"
@@ -57,7 +58,7 @@ export default function Landing() {
             step="0.01"
             value={volumeLevel.toString()}
             onChange={handleVolumeChange}
-            className="w-14 ml-2"
+            className="w-14 ml-2 hidden md:block" // Hide on mobile, display on medium and larger screens
           />
         </div>
       )}
