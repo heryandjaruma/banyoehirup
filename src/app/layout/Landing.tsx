@@ -58,7 +58,7 @@ export default function Landing() {
             step="0.01"
             value={volumeLevel.toString()}
             onChange={handleVolumeChange}
-            className="w-14 ml-2 hidden md:block" // Hide on mobile, display on medium and larger screens
+            className="w-14 ml-2 hidden 2xl:block" // Hide on mobile, display on medium and larger screens
           />
         </div>
       )}
@@ -68,7 +68,7 @@ export default function Landing() {
           className={`h-screen grid place-items-center ${fira_code.className}`}
           onClick={handleLandingClick}
         >
-          <div className="">
+          <div className="max-w-sm p-4">
             <p>NASA Space Apps 2023 Challenge</p>
             <p>by BJIR</p>
             <br />
