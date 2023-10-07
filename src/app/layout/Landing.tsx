@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import FigmaScreen from "./FigmaScreen";
 import { Fira_Code } from "next/font/google";
+import Modal from "../component/Modal";
 
 const fira_code = Fira_Code({
   weight: "400",
@@ -43,9 +44,15 @@ export default function Landing() {
     }
   }, []);
 
+  // for modal window
+  const [isModalShown, setIsModalShown] = useState(false);
+  const toggleModal = () => {
+    setIsModalShown((prev) => !prev);
+  };
+
   return (
     <div className="relative">
-      <audio ref={audioRef} src="/music/UnderTheOcean.mp3" />
+      <audio ref={audioRef} src="/music/UnderTheOcean.mp3" loop />
 
       {!isLandingVisible && (
         <div className="absolute top-2 right-2 opacity-20 hover:opacity-100 transition-opacity duration-300 flex items-center z-50">
@@ -65,7 +72,7 @@ export default function Landing() {
 
       {isLandingVisible && (
         <div
-          className={`h-screen grid place-items-center ${fira_code.className}`}
+          className={`h-screen flex items-center justify-center ${fira_code.className} text-white`}
           onClick={handleLandingClick}
         >
           <div className="max-w-sm p-4">
@@ -83,6 +90,19 @@ export default function Landing() {
       {!isLandingVisible && (
         <div>
           <FigmaScreen />
+        </div>
+      )}
+
+      <Modal isShown={isModalShown} onClose={toggleModal} />
+
+      {!isLandingVisible && (
+        <div className="absolute bottom-2 right-2">
+          <button
+            onClick={toggleModal}
+            className="rounded-full p-3 w-6 h-6 bg-white flex items-center justify-center opacity-20 hover:opacity-100 transition-opacity duration-300"
+          >
+            <p>?</p>
+          </button>
         </div>
       )}
     </div>
