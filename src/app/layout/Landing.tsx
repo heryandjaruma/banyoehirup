@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Fira_Code } from "next/font/google";
 import FigmaScreen from "./FigmaScreen";
 
@@ -23,9 +23,35 @@ export default function Landing() {
     setLandingVisible(false);
   };
 
+  const setVolume = (volume: number) => {
+    if (audioRef.current) {
+      audioRef.current.volume = volume;
+    }
+  };
+
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = 0.1; // Set default volume to 10%
+    }
+  }, []); // The empty dependency array ensures this runs once after the component mounts
+
   return (
-    <>
+    <div className="relative">
       <audio ref={audioRef} src="/music/underwater_ambience_cut.mp3" />
+
+      {!isLandingVisible && (
+        <div className="absolute top-2 right-2 opacity-10 hover:opacity-100 transition-opacity duration-300">
+          <input
+            type="range"
+            min="0"
+            max="0.2"
+            step="0.005"
+            onChange={(e) => setVolume(parseFloat(e.target.value))}
+            defaultValue="0.1"
+            className="w-14"
+          />
+        </div>
+      )}
 
       {isLandingVisible && (
         <div
@@ -33,9 +59,10 @@ export default function Landing() {
           onClick={handleLandingClick}
         >
           <div className="">
-            <p>Nasa Space Apps 2023 Challenge</p>
+            <p>NASA Space Apps 2023 Challenge</p>
             <p>by BJIR</p>
             <br />
+            <span className="animate-blink">&gt;</span>{" "}
             <button className="underline">Start</button>
           </div>
         </div>
@@ -46,6 +73,6 @@ export default function Landing() {
           <FigmaScreen />
         </div>
       )}
-    </>
+    </div>
   );
 }
