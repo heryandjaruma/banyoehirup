@@ -64,7 +64,7 @@ export default function Landing() {
 
       {isLandingVisible && (
         <div
-          className={`w-screen h-screen grid place-items-center ${fira_code.className}`}
+          className={`h-screen grid place-items-center ${fira_code.className} aspect-video`}
           onClick={handleLandingClick}
         >
           <div className="">
