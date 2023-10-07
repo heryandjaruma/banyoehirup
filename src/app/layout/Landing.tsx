@@ -1,7 +1,8 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
-import { Fira_Code } from "next/font/google";
 import FigmaScreen from "./FigmaScreen";
+import { Fira_Code } from "next/font/google";
 
 const fira_code = Fira_Code({
   weight: "400",
@@ -10,45 +11,53 @@ const fira_code = Fira_Code({
 
 export default function Landing() {
   const [isLandingVisible, setLandingVisible] = useState(true);
+  const [volumeLevel, setVolumeLevel] = useState(0.15);
+  const [isMuted, setIsMuted] = useState(false); // State for mute
   const audioRef = React.useRef<HTMLAudioElement>(null);
 
   const handleLandingClick = () => {
-    // Play the audio
     if (audioRef.current) {
       audioRef.current.play();
-      audioRef.current.volume = 0.15;
     }
-
-    // Hide the landing
     setLandingVisible(false);
   };
 
-  const setVolume = (volume: number) => {
+  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newVolume = parseFloat(e.target.value);
+    setVolumeLevel(newVolume);
     if (audioRef.current) {
-      audioRef.current.volume = volume;
+      audioRef.current.volume = newVolume;
+    }
+  };
+
+  const toggleMute = () => {
+    setIsMuted(!isMuted);
+    if (audioRef.current) {
+      audioRef.current.muted = !audioRef.current.muted;
     }
   };
 
   useEffect(() => {
     if (audioRef.current) {
-      audioRef.current.volume = 0.15; // Set default volume to 10%
+      audioRef.current.volume = volumeLevel;
     }
-  }, []); // The empty dependency array ensures this runs once after the component mounts
+  }, []);
 
   return (
     <div className="relative">
       <audio ref={audioRef} src="/music/UnderTheOcean.mp3" />
 
       {!isLandingVisible && (
-        <div className="absolute top-2 right-2 opacity-10 hover:opacity-100 transition-opacity duration-300">
+        <div className="absolute top-2 right-2 opacity-20 hover:opacity-100 transition-opacity duration-300 flex items-center">
+          <button onClick={toggleMute}>{isMuted ? "🔇" : "🔊"}</button>
           <input
             type="range"
             min="0"
             max="0.3"
-            step="0.005"
-            onChange={(e) => setVolume(parseFloat(e.target.value))}
-            defaultValue="0.15"
-            className="w-14"
+            step="0.01"
+            value={volumeLevel.toString()}
+            onChange={handleVolumeChange}
+            className="w-14 ml-2"
           />
         </div>
       )}
