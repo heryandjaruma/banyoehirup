@@ -16,7 +16,7 @@ export default function Landing() {
     // Play the audio
     if (audioRef.current) {
       audioRef.current.play();
-      audioRef.current.volume = 0.1;
+      audioRef.current.volume = 0.15;
     }
 
     // Hide the landing
@@ -31,23 +31,23 @@ export default function Landing() {
 
   useEffect(() => {
     if (audioRef.current) {
-      audioRef.current.volume = 0.1; // Set default volume to 10%
+      audioRef.current.volume = 0.15; // Set default volume to 10%
     }
   }, []); // The empty dependency array ensures this runs once after the component mounts
 
   return (
     <div className="relative">
-      <audio ref={audioRef} src="/music/underwater_ambience_cut.mp3" />
+      <audio ref={audioRef} src="/music/UnderTheOcean.mp3" />
 
       {!isLandingVisible && (
         <div className="absolute top-2 right-2 opacity-10 hover:opacity-100 transition-opacity duration-300">
           <input
             type="range"
             min="0"
-            max="0.2"
+            max="0.3"
             step="0.005"
             onChange={(e) => setVolume(parseFloat(e.target.value))}
-            defaultValue="0.1"
+            defaultValue="0.15"
             className="w-14"
           />
         </div>
