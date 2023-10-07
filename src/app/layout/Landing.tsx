@@ -48,7 +48,7 @@ export default function Landing() {
       <audio ref={audioRef} src="/music/UnderTheOcean.mp3" />
 
       {!isLandingVisible && (
-        <div className="absolute top-2 right-2 opacity-20 hover:opacity-100 transition-opacity duration-300 flex items-center">
+        <div className="absolute top-2 right-2 opacity-20 hover:opacity-100 transition-opacity duration-300 flex items-center z-50">
           <button onClick={toggleMute}>{isMuted ? "🔇" : "🔊"}</button>
           {/* Hide on small screens and display on larger screens */}
           <input
@@ -65,12 +65,14 @@ export default function Landing() {
 
       {isLandingVisible && (
         <div
-          className={`h-screen grid place-items-center ${fira_code.className} aspect-video`}
+          className={`h-screen grid place-items-center ${fira_code.className}`}
           onClick={handleLandingClick}
         >
           <div className="">
             <p>NASA Space Apps 2023 Challenge</p>
             <p>by BJIR</p>
+            <br />
+            <p>To maximize the experience, use a desktop device</p>
             <br />
             <span className="animate-blink">&gt;</span>{" "}
             <button className="underline">Start</button>
