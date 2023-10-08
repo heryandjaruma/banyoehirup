@@ -35,6 +35,17 @@ export default function About() {
         rapid climate change, creating a better world for future generations.
       </p>
 
+      <p className="mt-4">
+        Access the repository here{" "}
+        <a
+          href="https://github.com/heryandjaruma/banyoehirup"
+          target="_blank"
+          className="underline text-blue-600"
+        >
+          https://github.com/heryandjaruma/banyoehirup
+        </a>
+      </p>
+
       <div className="mt-8">
         <p className="text-2xl">Our Team</p>
         <div className="grid grid-cols-3 place-items-start mt-2">
