@@ -21,8 +21,8 @@ export default function About() {
         about Climate Change. The name of this program derives from the Javanese
         word &apos;Banyu&apos;, meaning water, and the Sundanese word
         &apos;Hirup&apos;, meaning life. When combined, they symbolize &apos;the
-        water of life&apos;, underscoring water's role as a source of life for
-        all living things on Earth.
+        water of life&apos;, underscoring water&apos;s role as a source of life
+        for all living things on Earth.
       </p>
       <p className="mt-4">
         Our goal with BanyoeHirup is to make information about climate change
