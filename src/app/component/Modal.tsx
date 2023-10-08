@@ -60,7 +60,7 @@ const Modal: React.FC<ModalProps> = ({ isShown, onClose }) => {
       onTransitionEnd={handleTransitionEnd}
     >
       <div
-        className="p-6 rounded-lg shadow-lg relative bg-slate-900 text-white"
+        className="p-6 rounded-lg shadow-lg relative bg-black text-white max-w-3xl"
         onClick={(e) => e.stopPropagation()}
       >
         <button onClick={onClose} className="absolute top-4 right-4">

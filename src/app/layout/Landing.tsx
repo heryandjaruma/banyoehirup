@@ -55,7 +55,7 @@ export default function Landing() {
       <audio ref={audioRef} src="/music/UnderTheOcean.mp3" loop />
 
       {!isLandingVisible && (
-        <div className="absolute top-2 right-2 opacity-20 hover:opacity-100 transition-opacity duration-300 flex items-center z-50">
+        <div className="absolute top-2 right-2 opacity-30 hover:opacity-100 transition-opacity duration-300 flex items-center z-50">
           <button onClick={toggleMute}>{isMuted ? "🔇" : "🔊"}</button>
           {/* Hide on small screens and display on larger screens */}
           <input
@@ -99,7 +99,7 @@ export default function Landing() {
         <div className="absolute bottom-2 right-2">
           <button
             onClick={toggleModal}
-            className="rounded-full p-3 w-6 h-6 bg-white flex items-center justify-center opacity-20 hover:opacity-100 transition-opacity duration-300"
+            className="rounded-full p-3 w-6 h-6 bg-white flex items-center justify-center opacity-30 hover:opacity-100 transition-opacity duration-300"
           >
             <p>?</p>
           </button>
